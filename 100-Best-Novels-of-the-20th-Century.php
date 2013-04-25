@@ -46,6 +46,7 @@
         </li>
     </ul>
 
+    <?if(NovelList::readAnyBooks() === true):?>
 	<h3>Novels I have Read</h3>
 	<ul>
 		<li class="boardreaders" id="read_both"><span class="novel">appearing on both list</span> </li>
@@ -53,6 +54,7 @@
 		<li class="readers" id="read_readers"><span class="novel">appearing on the readers list</span> </li>
 		<li id="read_total">Total</li>
 	</ul>
+    <?endif?>
 </div>
 
 </body>
@@ -141,11 +143,41 @@ class NovelList
 ////////////////////////////////// PUBLIC API \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     static public function htmlList()
     {
-        $oSelf = new self();
+        $oSelf = self::getInstance();
+
         return $oSelf->buildHtmlList();
     }
 
+    public static function readAnyBooks()
+    {
+        $bReadAnyBooks =false;
+
+        $oSelf = self::getInstance();
+
+        $aReadList = $oSelf->getReadList();
+
+        if(count($aReadList) > 0){
+            $bReadAnyBooks = true;
+        }
+
+        return $bReadAnyBooks;
+    }
+
 //////////////////////////////// UTILITY METHODS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    /**
+     * @return NovelList
+     */
+    protected static function getInstance()
+    {
+        static $oSelf;
+
+        if(!isset($oSelf)){
+            $oSelf = new self();
+        }
+
+        return $oSelf;
+    }
+
     protected function buildHtmlList(){
         $sContent = '<li>';
 
