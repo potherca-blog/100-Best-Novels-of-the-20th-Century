@@ -17,6 +17,9 @@ All books that are available for free from [Project Gutenberg][gutenberg] are ma
 
 If books one has read are added to the `ReadList.txt` file, these will be marked in the list as well.
 
+You can view [my personal list][example] to get an example of the output.
+
 [wikipedia_Modern_Library_100_Best_Novels]: http://en.wikipedia.org/wiki/Modern_Library_100_Best_Novels
 [gutenberg]: http://www.gutenberg.org/
 [gutenberg_catalog]: http://www.gutenberg.org/dirs/GUTINDEX.ALL
+[example]: http://potherca.github.io/100-Best-Novels-of-the-20th-Century/
