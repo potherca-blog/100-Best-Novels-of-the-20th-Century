@@ -1,4 +1,4 @@
-The Modern Library's 100 Best Novels is a list of the best English-language novels of the 20th century as selected by the Modern Library, an American publishing company owned by Random House.
+[The Modern Library's 100 Best Novels][modernlibrary-100-best-novels] is a list of the best English-language novels of the 20th century as selected by the Modern Library, an American publishing company owned by Random House.
 
 The list was created in 1998 by the Modern Library's editorial board which consisted of Daniel J. Boorstin, A. S. Byatt, Christopher Cerf, Shelby Foote, Vartan Gregorian, Edmund Morris, John Richardson, Arthur Schlesinger Jr., William Styron and Gore Vidal.
 
@@ -20,6 +20,7 @@ If books one has read are added to the `ReadList.txt` file, these will be marked
 You can view [my personal list][example] to get an example of the output.
 
 [wikipedia_Modern_Library_100_Best_Novels]: http://en.wikipedia.org/wiki/Modern_Library_100_Best_Novels
+[modernlibrary-100-best-novels]: http://www.modernlibrary.com/top-100/100-best-novels/
 [gutenberg]: http://www.gutenberg.org/
 [gutenberg_catalog]: http://www.gutenberg.org/dirs/GUTINDEX.ALL
 [example]: http://potherca.github.io/100-Best-Novels-of-the-20th-Century/
