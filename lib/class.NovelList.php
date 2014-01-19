@@ -3,19 +3,36 @@
 class NovelList
 {
 //////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    protected $m_aReadList     = array();
-    protected $m_aBoardList    = array();
-    protected $m_aReaderList   = array();
-    protected $m_aGutenbergList   = array();
+    protected $m_sUser = '';
+    protected $m_aUserList = array();
+    protected $m_aBoardList = array();
+    protected $m_aReaderList = array();
+    protected $m_aGutenbergList = array();
     protected $m_aCombinedList = array();
 
 ////////////////////////////// SETTERS AND GETTERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    public function setBoardList($p_aBoardList)
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->m_sUser;
+    }
+
+    /**
+     * @param string $p_sUser
+     */
+    public function setUser($p_sUser)
+    {
+        $this->m_sUser = (string) $p_sUser;
+    }
+
+    protected function setBoardList($p_aBoardList)
     {
         $this->m_aBoardList = $p_aBoardList;
     }
 
-    public function getBoardList()
+    protected function getBoardList()
     {
         if(empty($this->m_aBoardList))
         {
@@ -24,12 +41,12 @@ class NovelList
         return $this->m_aBoardList;
     }
 
-    public function setCombinedList($p_aCombinedList)
+    protected function setCombinedList($p_aCombinedList)
     {
         $this->m_aCombinedList = $p_aCombinedList;
     }
 
-    public function getCombinedList()
+    protected function getCombinedList()
     {
         if(empty($this->m_aCombinedList))
         {
@@ -38,26 +55,26 @@ class NovelList
         return $this->m_aCombinedList;
     }
 
-    public function setReadList($p_aReadList)
+    protected function setUserList($p_aUserList)
     {
-        $this->m_aReadList = $p_aReadList;
+        $this->m_aUserList = $p_aUserList;
     }
 
-    public function getReadList()
+    protected function getUserList()
     {
-        if(empty($this->m_aReadList))
+        if(empty($this->m_aUserList))
         {
-            $this->m_aReadList = $this->retrieveList('Read');
+            $this->m_aUserList = $this->retrieveList('User');
         }
-        return $this->m_aReadList;
+        return $this->m_aUserList;
     }
 
-    public function setReaderList($p_aReaderList)
+    protected function setReaderList($p_aReaderList)
     {
         $this->m_aReaderList = $p_aReaderList;
     }
 
-    public function getReaderList()
+    protected function getReaderList()
     {
         if(empty($this->m_aReaderList))
         {
@@ -66,12 +83,12 @@ class NovelList
         return $this->m_aReaderList;
     }
 
-    public function setGutenbergList($p_aGutenbergList)
+    protected function setGutenbergList($p_aGutenbergList)
     {
         $this->m_aGutenbergList = $p_aGutenbergList;
     }
 
-    public function getGutenbergList()
+    protected function getGutenbergList()
     {
         if(empty($this->m_aGutenbergList))
         {
@@ -81,20 +98,18 @@ class NovelList
     }
 
 ////////////////////////////////// PUBLIC API \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    static public function htmlList()
+    public function htmlList()
     {
-        $oSelf = self::getInstance();
-
-        return $oSelf->buildHtmlList();
+        return $this->buildHtmlList();
     }
 
-    public static function readAnyBooks()
+    public function readAnyBooks()
     {
         $bReadAnyBooks =false;
 
         $oSelf = self::getInstance();
 
-        $aReadList = $oSelf->getReadList();
+        $aReadList = $oSelf->getUserList();
 
         if(count($aReadList) > 0){
             $bReadAnyBooks = true;
@@ -163,7 +178,7 @@ class NovelList
     {
         $sList = '';
 
-        if (in_array($t_sBook, $this->getReadList())) {
+        if (in_array($t_sBook, $this->getUserList())) {
             $sList .= 'read ';
         }
 
@@ -196,11 +211,12 @@ class NovelList
     {
         $aFileContent = array();
 
-        $sListDirectory = '../lists/';
+        $sListDirectory = realpath('../lists/').'/';
 
         switch($p_sType) {
-            case 'Read':
-                $sFile = $p_sType . 'List.txt';
+            case 'User':
+                $sUser = $this->getUser();
+                $sFile = $sListDirectory . 'users/' . $sUser . '.txt';
                 break;
 
 
@@ -230,7 +246,6 @@ class NovelList
     protected function retrieveContentFromFile($sFile)
     {
         $aFileContent = array();
-
         if(is_readable($sFile)) {
             $aFileContent = file($sFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         }

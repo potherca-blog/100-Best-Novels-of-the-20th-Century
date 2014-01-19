@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<? require('../lib/class.NovelList.php'); ?>
+<?
+require('../lib/class.NovelList.php');
+$oNovelList = new NovelList();
+if(isset($_GET['user'])){
+    $oNovelList->setUser($_GET['user']);
+}
+
+?>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,7 +40,7 @@
     </p>
 
     <ol>
-        <?=  NovelList::htmlList() ?>
+        <?=  $oNovelList->htmlList() ?>
     </ol>
 
     <div class="legend">
@@ -47,7 +54,7 @@
         </li>
     </ul>
 
-    <?if(NovelList::readAnyBooks() === true):?>
+    <?if($oNovelList->readAnyBooks() === true):?>
     <h3>Novels I have Read</h3>
     <ul>
         <li class="boardreaders" id="read_both"><span class="novel">appearing on both list</span> </li>
