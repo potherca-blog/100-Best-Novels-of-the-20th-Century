@@ -10,6 +10,7 @@ body {
 ;
 
     color: #333;
+    background-color: rgb(253, 246, 227);
     font-family: sans-serif;
     margin: 3em auto;
     width: 40em;
@@ -74,6 +75,13 @@ h3:after {
     content: ":";
 }
 
+.page {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid;
+    border-radius: 0.5em;
+    padding: 2em;
+}
+
 p,ol,ul {
     background-color: rgba(255, 255, 255, .8);
     margin:0;
@@ -122,11 +130,13 @@ ol li:hover {
 }
 
 .board .novel {
-    border-left-color:#ef8a62;
+    /*border-left-color:#ef8a62;*/
+    border-left-color: rgb(220, 50, 47);
 }
 
 .readers .novel {
-    border-left-color: #67a9cf;
+    /*border-left-color: #67a9cf;*/
+    border-left-color: rgb(38, 139, 210);
 }
 
 .gutenberg  a {
@@ -168,3 +178,9 @@ ol li:hover {
     float: left;
 }
 
+.banner a {
+    background-color: rgb(238, 232, 213);
+    background-image: none;
+}
+
+/*EOF*/
