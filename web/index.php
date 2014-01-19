@@ -256,6 +256,8 @@ class NovelList
     {
         $aFileContent = array();
 
+        $sListDirectory = 'lists/';
+
         switch($p_sType) {
             case 'Read':
                 $sFile = $p_sType . 'List.txt';
@@ -263,13 +265,13 @@ class NovelList
 
 
             case 'Gutenberg':
-                $sFile = 'Lists/GUTINDEX.ALL.txt';
+                $sFile = $sListDirectory . 'GUTINDEX.ALL.txt';
             break;
 
 
             case 'Board':
             case 'Reader':
-                $sFile = 'Lists/' . $p_sType . 'List.txt';
+                $sFile = $sListDirectory . $p_sType . 'List.txt';
             break;
 
 
