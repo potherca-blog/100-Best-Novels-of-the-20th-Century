@@ -23,4 +23,4 @@ You can view [my personal list][example] to get an example of the output.
 [modernlibrary-100-best-novels]: http://www.modernlibrary.com/top-100/100-best-novels/
 [gutenberg]: http://www.gutenberg.org/
 [gutenberg_catalog]: http://www.gutenberg.org/dirs/GUTINDEX.ALL
-[example]: http://potherca.github.io/100-Best-Novels-of-the-20th-Century/
+[example]: http://best-novels-of-20th-century.herokuapp.com/?user=potherca
