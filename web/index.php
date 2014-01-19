@@ -13,6 +13,7 @@ if(isset($_GET['user'])){
     <title>100 Best Novels of the 20th Century</title>
     <link rel="stylesheet" type="text/css" href="http://pother.ca/CssBase/css/ribbon.css"/>
     <link rel="stylesheet" type="text/css" href="base.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
