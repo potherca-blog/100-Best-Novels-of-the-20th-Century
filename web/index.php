@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<?
-require('../lib/class.NovelList.php');
+<?php
+
+require dirname(__DIR__).'/lib/class.NovelList.php';
+
 $oNovelList = new NovelList();
-if(isset($_GET['user'])){
+
+if (isset($_GET['user'])) {
     $oNovelList->setUser($_GET['user']);
 }
 
@@ -12,7 +15,7 @@ if(isset($_GET['user'])){
     <meta charset="utf-8" />
     <title>100 Best Novels of the 20th Century</title>
     <link rel="stylesheet" type="text/css" href="base.css"/>
-    <link rel="stylesheet" type="text/css" href="http://pother.ca/CssBase/css/ribbon.css"/>
+    <link rel="stylesheet" type="text/css" href="https://pother.ca/CssBase/css/ribbon.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
 
@@ -42,7 +45,7 @@ if(isset($_GET['user'])){
         </p>
 
         <ol>
-            <?=  $oNovelList->htmlList() ?>
+            <?= $oNovelList->htmlList() ?>
         </ol>
 
     </div>
@@ -53,11 +56,11 @@ if(isset($_GET['user'])){
             <li id="total">Total</li>
             <li id="gutenberg_total">
                 <hr/>
-                available from <a href="//www.gutenberg.org">Project Gutenberg</a>
+                available from <a href="https://www.gutenberg.org">Project Gutenberg</a>
             </li>
         </ul>
 
-        <?if($oNovelList->readAnyBooks() === true):?>
+        <?php if ($oNovelList->readAnyBooks() === true): ?>
             <h3>Novels I have Read</h3>
             <ul>
                 <li class="boardreaders" id="read_both"><span class="novel">appearing on both list</span> </li>
@@ -65,7 +68,7 @@ if(isset($_GET['user'])){
                 <li class="readers" id="read_readers"><span class="novel">appearing on the readers list</span> </li>
                 <li id="read_total">Total</li>
             </ul>
-        <?endif?>
+        <?php endif?>
     </div>
     <div class="banner banner-left banner-fixed">
         <a href="https://github.com/potherca/100-Best-Novels-of-the-20th-Century/">See the source code</a>
