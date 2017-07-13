@@ -1,16 +1,16 @@
-<?
+<?php
 
 class NovelList
 {
-//////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    ////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
     protected $m_sUser = '';
-    protected $m_aUserList = array();
-    protected $m_aBoardList = array();
-    protected $m_aReaderList = array();
-    protected $m_aGutenbergList = array();
-    protected $m_aCombinedList = array();
+    protected $m_aUserList = [];
+    protected $m_aBoardList = [];
+    protected $m_aReaderList = [];
+    protected $m_aGutenbergList = [];
+    protected $m_aCombinedList = [];
 
-////////////////////////////// SETTERS AND GETTERS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //////////////////////////// SETTERS AND GETTERS \\\\\\\\\\\\\\\\\\\\\\\\\\\
     /**
      * @return string
      */
@@ -27,77 +27,76 @@ class NovelList
         $this->m_sUser = (string) $p_sUser;
     }
 
-    protected function setBoardList($p_aBoardList)
+    protected function setBoardList(array $p_aBoardList)
     {
         $this->m_aBoardList = $p_aBoardList;
     }
 
     protected function getBoardList()
     {
-        if(empty($this->m_aBoardList))
-        {
+        if (empty($this->m_aBoardList)) {
             $this->m_aBoardList = $this->retrieveList('Board');
         }
+
         return $this->m_aBoardList;
     }
 
-    protected function setCombinedList($p_aCombinedList)
+    protected function setCombinedList(array $p_aCombinedList)
     {
         $this->m_aCombinedList = $p_aCombinedList;
     }
 
     protected function getCombinedList()
     {
-        if(empty($this->m_aCombinedList))
-        {
+        if (empty($this->m_aCombinedList)) {
             $this->buildCombinedList();
         }
+
         return $this->m_aCombinedList;
     }
 
-    protected function setUserList($p_aUserList)
+    protected function setUserList(array $p_aUserList)
     {
         $this->m_aUserList = $p_aUserList;
     }
 
     protected function getUserList()
     {
-        if(empty($this->m_aUserList))
-        {
+        if (empty($this->m_aUserList)) {
             $this->m_aUserList = $this->retrieveList('User');
         }
+
         return $this->m_aUserList;
     }
 
-    protected function setReaderList($p_aReaderList)
+    protected function setReaderList(array $p_aReaderList)
     {
         $this->m_aReaderList = $p_aReaderList;
     }
 
     protected function getReaderList()
     {
-        if(empty($this->m_aReaderList))
-        {
+        if (empty($this->m_aReaderList)) {
             $this->m_aReaderList = $this->retrieveList('Reader');
         }
         return $this->m_aReaderList;
     }
 
-    protected function setGutenbergList($p_aGutenbergList)
+    protected function setGutenbergList(array $p_aGutenbergList)
     {
         $this->m_aGutenbergList = $p_aGutenbergList;
     }
 
     protected function getGutenbergList()
     {
-        if(empty($this->m_aGutenbergList))
-        {
+        if (empty($this->m_aGutenbergList)) {
             $this->m_aGutenbergList = $this->retrieveList('Gutenberg');
         }
+
         return $this->m_aGutenbergList;
     }
 
-////////////////////////////////// PUBLIC API \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //////////////////////////////// PUBLIC API \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     public function htmlList()
     {
         return $this->buildHtmlList();
@@ -111,14 +110,14 @@ class NovelList
 
         $aReadList = $oSelf->getUserList();
 
-        if(count($aReadList) > 0){
+        if (count($aReadList) > 0) {
             $bReadAnyBooks = true;
         }
 
         return $bReadAnyBooks;
     }
 
-//////////////////////////////// UTILITY METHODS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    ////////////////////////////// UTILITY METHODS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     /**
      * @return NovelList
      */
@@ -126,7 +125,7 @@ class NovelList
     {
         static $oSelf;
 
-        if(!isset($oSelf)){
+        if (! isset($oSelf)) {
             $oSelf = new self();
         }
 
@@ -138,8 +137,8 @@ class NovelList
 
         $iPreviousScore = null;
 
-        foreach($this->getCombinedList() as $t_sBook => $t_iScore) {
-            if($iPreviousScore && $t_iScore !== $iPreviousScore) {
+        foreach ($this->getCombinedList() as $t_sBook => $t_iScore) {
+            if ($iPreviousScore && $t_iScore !== $iPreviousScore) {
                 $sContent .='</li>' . "\n" . '        <li>';
             }
 
@@ -209,7 +208,7 @@ class NovelList
 
     protected function retrieveList($p_sType)
     {
-        $aFileContent = array();
+        $aFileContent = [];
 
         $sListDirectory = realpath('../lists/').'/';
 
@@ -236,7 +235,7 @@ class NovelList
                 break;
         }
 
-        if(isset($sFile)){
+        if (isset($sFile)) {
             $aFileContent = $this->retrieveContentFromFile($sFile);
         }
 
@@ -245,8 +244,9 @@ class NovelList
 
     protected function retrieveContentFromFile($sFile)
     {
-        $aFileContent = array();
-        if(is_readable($sFile)) {
+        $aFileContent = [];
+
+        if (is_readable($sFile)) {
             $aFileContent = file($sFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         }
 
@@ -260,9 +260,7 @@ class NovelList
 
             if (isset($this->m_aCombinedList[$t_sBook])) {
                 $this->m_aCombinedList[$t_sBook] = $this->m_aCombinedList[$t_sBook] + $iScore;
-            }
-            else
-            {
+            } else {
                 $this->m_aCombinedList[$t_sBook] = $iScore;
             }
         }
@@ -274,7 +272,7 @@ class NovelList
 
         static $sFileContent;
 
-        if(!isset($sFileContent)){
+        if (! isset($sFileContent)) {
             $sFileContent = implode("\n", $this->getGutenbergList());
         }
 
@@ -286,7 +284,7 @@ class NovelList
             $aMatches
         );
 
-        if($iMatch > 0) {
+        if ($iMatch > 0) {
             $bAvailable = true;
         }
 
@@ -294,4 +292,4 @@ class NovelList
     }
 }
 
-#EOF
+/*EOF*/
