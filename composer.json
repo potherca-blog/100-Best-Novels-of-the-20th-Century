@@ -1,0 +1,15 @@
+{
+    "name": "potherca/100-best-novels-of-the-20th-century",
+    "description": "List of the 100 Best Novels of the 20th Century as dictated by both the Readers and the Board of Randomhouse publishers.",
+    "type": "project",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Ben Peachey",
+            "email": "potherca@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^5.6"
+    }
+}
