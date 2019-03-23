@@ -1,0 +1,170 @@
+body {
+    counter-reset:
+        total
+        both
+        read_both
+        read_board
+        read_readers
+        read_total
+        gutenberg_total
+;
+
+    color: #333;
+    font-family: sans-serif;
+    margin: 3em auto;
+    width: 40em;
+}
+
+#both:after {
+    content: " : " counter(both);
+}
+
+#total:after {
+    content: " : " counter(total);
+}
+
+#read_both:after {
+    content: " : " counter(read_both);
+}
+
+#read_board:after {
+    content: " : " counter(read_board);
+}
+
+#read_readers:after {
+    content: " : " counter(read_readers);
+}
+
+#read_total:after {
+    content: " : " counter(read_total);
+}
+
+#gutenberg_total:after {
+    content: " : " counter(gutenberg_total);
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    position: fixed;
+    top: 0;
+    color: rgba(0,0,0,0.8);
+    width: 100%;
+    left: 0;
+
+    margin: 0;
+    height: 1.5em;
+    z-index: -1;
+}
+
+h2 {
+    font-size: 120%;
+    margin-top: -1em;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 100%;
+    margin: 1em 0 2px -1px;
+    width:100%;
+}
+
+h3:after {
+    color: #FFF;
+    content: ":";
+}
+
+p,ol,ul {
+    background-color: rgba(255, 255, 255, .8);
+    margin:0;
+    padding: 1em;
+}
+
+ul {
+    list-style-type:none;
+}
+
+ol li {
+    color: #999;
+    border: 1px solid transparent;
+    list-style-position: outside;
+}
+
+ol li:hover {
+    color: rgb(255, 237, 111);
+    background-color: rgba(255, 255, 191, 0.8);
+    border-color: rgba(255, 237, 111, 0.8);
+}
+
+.read {
+    background-color:#DDD;
+    background-color: rgba(200, 200, 200, .8);
+}
+
+.read.board {
+    counter-increment: read_board read_total;
+}
+
+.read.readers {
+    counter-increment: read_readers read_total;
+}
+
+.read.boardreaders {
+    counter-increment: read_both read_total;
+}
+
+.novel {
+    border-left:0.5em solid #DDD;
+    color: #000;
+    margin-left:-0.3em;
+    padding-left:0.25em;
+    counter-increment: total;
+}
+
+.board .novel {
+    border-left-color:#ef8a62;
+}
+
+.readers .novel {
+    border-left-color: #67a9cf;
+}
+
+.gutenberg  a {
+    color: #999;
+    text-decoration: none;
+    counter-increment: gutenberg_total;
+}
+
+.gutenberg  .novel {
+    font-weight: bold;
+}
+
+.boardreaders .novel {
+    counter-increment: both;
+}
+
+.author {
+    color: #444;
+}
+
+.legend {
+    background-color: rgba(255, 255, 255, 0.5);
+    position: fixed;
+    margin-top: 2em;
+    right: 1em;
+    text-align: right;
+    top: 2em;
+}
+
+.legend ul {
+    border: 1px solid;
+    margin: 0;
+    padding: 0;
+}
+.legend li {
+    padding: 0 0.5em;
+}
+.legend li .novel {
+    float: left;
+}
+
