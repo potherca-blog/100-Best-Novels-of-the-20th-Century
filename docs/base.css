@@ -116,9 +116,10 @@ ol li:hover {
 .novel {
     border-left:0.5em solid #DDD;
     color: #000;
+    counter-increment: total;
     margin-left:-0.3em;
     padding-left:0.25em;
-    counter-increment: total;
+    text-transform: capitalize;
 }
 
 .board .novel {
@@ -145,6 +146,7 @@ ol li:hover {
 
 .author {
     color: #444;
+    text-transform: capitalize;
 }
 
 .legend {
