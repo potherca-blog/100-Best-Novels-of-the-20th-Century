@@ -3,11 +3,16 @@
 
 require dirname(__DIR__).'/lib/class.NovelList.php';
 
-$oNovelList = new NovelList();
-
+$user = '';
 if (isset($_GET['user'])) {
-    $oNovelList->setUser($_GET['user']);
+    $user = $_GET['user'];
 }
+
+$oNovelList = new NovelList(
+    $user, [
+        'l. ron hubbard',
+    ]
+);
 
 ?>
 <html>

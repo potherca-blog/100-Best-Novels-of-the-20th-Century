@@ -3,6 +3,7 @@
 class NovelList
 {
     ////////////////////////////// CLASS PROPERTIES \\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
     protected $m_sUser = '';
     protected $m_aUserList = [];
     protected $m_aBoardList = [];
@@ -11,26 +12,6 @@ class NovelList
     protected $m_aCombinedList = [];
 
     //////////////////////////// SETTERS AND GETTERS \\\\\\\\\\\\\\\\\\\\\\\\\\\
-    /**
-     * @return string
-     */
-    public function getUser()
-    {
-        return $this->m_sUser;
-    }
-
-    /**
-     * @param string $p_sUser
-     */
-    public function setUser($p_sUser)
-    {
-        $this->m_sUser = (string) $p_sUser;
-    }
-
-    protected function setBoardList(array $p_aBoardList)
-    {
-        $this->m_aBoardList = $p_aBoardList;
-    }
 
     protected function getBoardList()
     {
@@ -39,11 +20,6 @@ class NovelList
         }
 
         return $this->m_aBoardList;
-    }
-
-    protected function setCombinedList(array $p_aCombinedList)
-    {
-        $this->m_aCombinedList = $p_aCombinedList;
     }
 
     protected function getCombinedList()
@@ -55,11 +31,6 @@ class NovelList
         return $this->m_aCombinedList;
     }
 
-    protected function setUserList(array $p_aUserList)
-    {
-        $this->m_aUserList = $p_aUserList;
-    }
-
     protected function getUserList()
     {
         if (empty($this->m_aUserList)) {
@@ -69,22 +40,12 @@ class NovelList
         return $this->m_aUserList;
     }
 
-    protected function setReaderList(array $p_aReaderList)
-    {
-        $this->m_aReaderList = $p_aReaderList;
-    }
-
     protected function getReaderList()
     {
         if (empty($this->m_aReaderList)) {
             $this->m_aReaderList = $this->retrieveList('Reader');
         }
         return $this->m_aReaderList;
-    }
-
-    protected function setGutenbergList(array $p_aGutenbergList)
-    {
-        $this->m_aGutenbergList = $p_aGutenbergList;
     }
 
     protected function getGutenbergList()
@@ -97,6 +58,12 @@ class NovelList
     }
 
     //////////////////////////////// PUBLIC API \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    final public function __construct($p_sUser = '', array $p_aCensorList = [])
+    {
+        $this->m_sUser = (string) $p_sUser;
+        $this->m_aCensorList = $p_aCensorList;
+    }
+
     public function htmlList()
     {
         return $this->buildHtmlList();
@@ -104,7 +71,7 @@ class NovelList
 
     public function readAnyBooks()
     {
-        $bReadAnyBooks =false;
+        $bReadAnyBooks = false;
 
         $oSelf = self::getInstance();
 
@@ -214,8 +181,7 @@ class NovelList
 
         switch($p_sType) {
             case 'User':
-                $sUser = $this->getUser();
-                $sFile = $sListDirectory . 'users/' . $sUser . '.txt';
+                $sFile = $sListDirectory . 'users/' . $this->m_sUser . '.txt';
                 break;
 
 
@@ -256,12 +222,14 @@ class NovelList
     protected function reCalc(Array $p_aSubject)
     {
         foreach ($p_aSubject as $t_iIndex => $t_sBook) {
-            $iScore = 100 - (int) $t_iIndex;
+            if ($this->shouldCensor($t_sBook) === false) {
+                $iScore = 100 - (int) $t_iIndex;
 
-            if (isset($this->m_aCombinedList[$t_sBook])) {
-                $this->m_aCombinedList[$t_sBook] = $this->m_aCombinedList[$t_sBook] + $iScore;
-            } else {
-                $this->m_aCombinedList[$t_sBook] = $iScore;
+                if (isset($this->m_aCombinedList[$t_sBook])) {
+                    $this->m_aCombinedList[$t_sBook] = $this->m_aCombinedList[$t_sBook] + $iScore;
+                } else {
+                    $this->m_aCombinedList[$t_sBook] = $iScore;
+                }
             }
         }
     }
@@ -289,6 +257,13 @@ class NovelList
         }
 
         return $bAvailable;
+    }
+
+    private function shouldCensor($p_sBook)
+    {
+        list(, $sAuthor) = explode(' by ', $p_sBook, 2);
+
+        return in_array($sAuthor, $this->m_aCensorList);
     }
 }
 
