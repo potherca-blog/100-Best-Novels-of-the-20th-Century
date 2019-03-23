@@ -71,33 +71,10 @@ class NovelList
 
     public function readAnyBooks()
     {
-        $bReadAnyBooks = false;
-
-        $oSelf = self::getInstance();
-
-        $aReadList = $oSelf->getUserList();
-
-        if (count($aReadList) > 0) {
-            $bReadAnyBooks = true;
-        }
-
-        return $bReadAnyBooks;
+        return count($this->getUserList()) > 0;
     }
 
     ////////////////////////////// UTILITY METHODS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    /**
-     * @return NovelList
-     */
-    protected static function getInstance()
-    {
-        static $oSelf;
-
-        if (! isset($oSelf)) {
-            $oSelf = new self();
-        }
-
-        return $oSelf;
-    }
 
     protected function buildHtmlList(){
         $sContent = '<li>';
