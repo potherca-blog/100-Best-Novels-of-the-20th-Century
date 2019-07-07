@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPotherca%2F100-Best-Novels-of-the-20th-Century.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FPotherca%2F100-Best-Novels-of-the-20th-Century?ref=badge_shield)
+
 [The Modern Library's 100 Best Novels][modernlibrary-100-best-novels] is a list of the best English-language novels of the 20th century as selected by the Modern Library, an American publishing company owned by Random House.
 
 The list was created in 1998 by the Modern Library's editorial board which consisted of Daniel J. Boorstin, A. S. Byatt, Christopher Cerf, Shelby Foote, Vartan Gregorian, Edmund Morris, John Richardson, Arthur Schlesinger Jr., William Styron and Gore Vidal.
@@ -24,3 +26,7 @@ You can view [my personal list][example] to get an example of the output.
 [gutenberg]: http://www.gutenberg.org/
 [gutenberg_catalog]: http://www.gutenberg.org/dirs/GUTINDEX.ALL
 [example]: http://best-novels-of-20th-century.herokuapp.com/?user=potherca
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FPotherca%2F100-Best-Novels-of-the-20th-Century.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FPotherca%2F100-Best-Novels-of-the-20th-Century?ref=badge_large)
